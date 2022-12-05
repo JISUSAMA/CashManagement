@@ -6,14 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class RecordList_UIManager : MonoBehaviour
 {
+    [Header("RecordList_Home_Grup")]
     public ToggleGroup RecordList_toggleGrup;
     public Toggle[] RecordList_toggle;
     public GameObject[] RecordCanvasList_ob;
-
+    [Space(5)]
+    [Header("Main_Toggle_Grup")]
     public ToggleGroup Latest_toggleGrup;
     public Toggle[] Latest_toggle;
     public GameObject[] LatestCanvasList_ob;
 
+    [Space(5)]
+    [Header("Write_Data")]
+    public ToggleGroup WriteData_toggleGrup;
+    public Toggle[] WriteData_toggle;
+    [Space(5f)][Header("Deposit Money")]
+    public InputField DepositMoney_inf;
+    [Space(5f)][Header("Withdrawal Money")]
+    public InputField WithdrawalMoney_inf;
 
     public Toggle RecordList_Seletion
     {
