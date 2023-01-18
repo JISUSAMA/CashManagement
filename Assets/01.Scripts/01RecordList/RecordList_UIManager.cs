@@ -2,6 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System.Collections.Generic;
+using System.IO;
+using System;
 using UnityEngine.SceneManagement;
 
 public class RecordList_UIManager : MonoBehaviour
@@ -34,12 +37,22 @@ public class RecordList_UIManager : MonoBehaviour
         public InputField WithdrawalMoney_inf;
     }
 
+    [System.Serializable]
+    public struct Create_PassBook_Data
+    {
+        public GameObject create_popup_ob;
+        public InputField Passbook_name;
+        public InputField Passbook_memo;
+        public Button creat_btn;
+    }
     [Header("RecordList_Home_Grup")]
     public RecordList_Home_Grup RecordList_Main;
 
     [Header("Write_New_Data 입/출금 기록")]
     public Write_New_Data WriteNewData;
 
+    [Header("Create_Passbook_Data")]
+    public Create_PassBook_Data Create_passbook;
 
     public Toggle RecordList_Seletion
     {
@@ -134,9 +147,15 @@ public class RecordList_UIManager : MonoBehaviour
         if (grup2 == true) { WriteNewData.NewDataCanvasList[1].gameObject.SetActive(true); }
         else { WriteNewData.NewDataCanvasList[1].SetActive(false); }
     }
+    ///////////////////////////  통장생성   ///////////////////////////////////////////////////
     public void OnClick_Create_Passbook()
     {
-        SceneManager.LoadScene("02PassBook");
+        Create_passbook.create_popup_ob.SetActive(true);
+    }
+    public void OnClick_Yes_CreateBtn()
+    {
+        string pass_book = Create_passbook.Passbook_name.text;
+        string pass_memo = Create_passbook.Passbook_memo.text;
     }
     //입금,출금 기록 생성하기 
     public void Open_NewDataCanvas()
@@ -144,4 +163,6 @@ public class RecordList_UIManager : MonoBehaviour
         WriteNewData.InputNewDataCanvas_ob.SetActive(true); //팝업 활성화 
 
     }
+
+   
 }
