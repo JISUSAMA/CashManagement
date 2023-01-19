@@ -23,21 +23,6 @@ public class RecordList_UIManager : MonoBehaviour
 
     }
     [System.Serializable]
-    public struct Write_New_Data
-    {
-        public GameObject InputNewDataCanvas_ob; 
-        public ToggleGroup WriteData_toggleGrup;
-        public Toggle[] WriteData_toggle;
-        public GameObject[] NewDataCanvasList;
-        [Space(5f)]
-        [Header("Deposit Money")]
-        public InputField DepositMoney_inf;
-        [Space(5f)]
-        [Header("Withdrawal Money")]
-        public InputField WithdrawalMoney_inf;
-    }
-
-    [System.Serializable]
     public struct Create_PassBook_Data
     {
         public GameObject create_popup_ob;
@@ -45,15 +30,24 @@ public class RecordList_UIManager : MonoBehaviour
         public InputField Passbook_memo;
         public Button creat_btn;
     }
+    [System.Serializable]
+    public struct Add_Deposit_Withdrawal_Data
+    {
+        public GameObject Deposit_Withdrawal_Canvas;
+        [Space(5)]
+        public ToggleGroup D_W_ToggleGrup;
+        public Toggle[] D_W_Toggle;
+        public GameObject[] D_W_CanvasList_ob;
+    }
+    [Space(5)]
     [Header("RecordList_Home_Grup")]
     public RecordList_Home_Grup RecordList_Main;
-
-    [Header("Write_New_Data 입/출금 기록")]
-    public Write_New_Data WriteNewData;
-
+    [Space(5)]
     [Header("Create_Passbook_Data")]
     public Create_PassBook_Data Create_passbook;
-
+    [Space(5)]
+    [Header("입/출금 기록 추가 작성하기")]
+    public Add_Deposit_Withdrawal_Data Add_DW_data;
     public Toggle RecordList_Seletion
     {
         get { return RecordList_Main.RecordList_toggleGrup.ActiveToggles().FirstOrDefault(); }
@@ -120,33 +114,6 @@ public class RecordList_UIManager : MonoBehaviour
         else { RecordList_Main.LatestCanvasList_ob[1].SetActive(false); }
     }
 
-    public Toggle WriteData_selection
-    {
-        get { return WriteNewData.WriteData_toggleGrup.ActiveToggles().FirstOrDefault(); }
-    }
-    public void WriteDataGrup_Toggle()
-    {
-        if (WriteNewData.WriteData_toggleGrup.ActiveToggles().Any())
-        {
-            if (WriteData_selection.name.Equals("Deposit"))
-            {
-                WriteDataGrup_Selection_Active(true, false);
-            }
-            else if (WriteData_selection.name.Equals("Withdrawal"))
-            {
-                WriteDataGrup_Selection_Active(false, true);
-            }
-        }
-    }
-    void WriteDataGrup_Selection_Active(bool grup1, bool grup2)
-    {
-        //입금
-        if (grup1 == true) { WriteNewData.NewDataCanvasList[0].SetActive(true); }
-        else { WriteNewData.NewDataCanvasList[0].SetActive(false); }
-        //출금
-        if (grup2 == true) { WriteNewData.NewDataCanvasList[1].gameObject.SetActive(true); }
-        else { WriteNewData.NewDataCanvasList[1].SetActive(false); }
-    }
     ///////////////////////////  통장생성   ///////////////////////////////////////////////////
     public void OnClick_Create_Passbook()
     {
@@ -157,12 +124,40 @@ public class RecordList_UIManager : MonoBehaviour
         string pass_book = Create_passbook.Passbook_name.text;
         string pass_memo = Create_passbook.Passbook_memo.text;
     }
-    //입금,출금 기록 생성하기 
-    public void Open_NewDataCanvas()
+    /////////////////// 입출금 기록하기 //////////////////////////////////////////////
+    public void OnClick_D_W_CreateBtn()
     {
-        WriteNewData.InputNewDataCanvas_ob.SetActive(true); //팝업 활성화 
+        Add_DW_data.Deposit_Withdrawal_Canvas.SetActive(true);
+    }
+    public Toggle Add_DW_Data_selection
+    {
+        get { return Add_DW_data.D_W_ToggleGrup.ActiveToggles().FirstOrDefault(); }
+    }
+    public void Add_DW_Data_Toggle()
+    {
+        if (Add_DW_data.D_W_ToggleGrup.ActiveToggles().Any())
+        {
+            if (Add_DW_Data_selection.name.Equals("Deposit_Toggle"))
+            {
+                Add_DW_Selection_Active(true, false);
+            }
+            else if (Add_DW_Data_selection.name.Equals("Withdrwal_Toggle"))
+            {
+                Add_DW_Selection_Active(false, true);
+            }
+           
+        }
+    }
+    void Add_DW_Selection_Active(bool deposit, bool withdrawal)
+    {
+        if(deposit == true)
+        { Add_DW_data.D_W_CanvasList_ob[0].SetActive(true);}
+        else { Add_DW_data.D_W_CanvasList_ob[0].SetActive(false); }
+    if(withdrawal == true)
+        {
+            Add_DW_data.D_W_CanvasList_ob[1].SetActive(true);
+        }
+        else { Add_DW_data.D_W_CanvasList_ob[1].SetActive(false); }
 
     }
-
-   
 }
