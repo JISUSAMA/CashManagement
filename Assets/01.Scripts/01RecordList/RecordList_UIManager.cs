@@ -38,6 +38,12 @@ public class RecordList_UIManager : MonoBehaviour
         public ToggleGroup D_W_ToggleGrup;
         public Toggle[] D_W_Toggle;
         public GameObject[] D_W_CanvasList_ob;
+        [Space(5)]
+        [Header("입금 내역 작성")]
+        public ToggleGroup Deposit_method_toggleG;
+        public Toggle[] Deposit_method_toggles;
+        public GameObject[] Deposit_method_CanvasList_ob;
+
     }
     [Space(5)]
     [Header("RecordList_Home_Grup")]
