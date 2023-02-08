@@ -52,7 +52,7 @@ public class CameraResolution : MonoBehaviour
     public void SetResolution()
     {
         int setWidth = 1080; // 사용자 설정 너비
-        int setHeight = 1920; // 사용자 설정 높이
+        int setHeight = 2120; // 사용자 설정 높이
 
         int deviceWidth = Screen.width; // 기기 너비 저장
         int deviceHeight = Screen.height; // 기기 높이 저장
@@ -107,7 +107,7 @@ public class CameraResolution : MonoBehaviour
     public void SetCameraAsect()
     {
 
-        float targetaspect = 1080.0f / 1920.0f;
+        float targetaspect = 1080.0f / 2120.0f;
         float windowaspect = 0;
 
 #if UNITY_EDITOR
@@ -152,7 +152,7 @@ public class CameraResolution : MonoBehaviour
         }
     }
 
-    private void Update()
+  /*  private void Update()
     {
         //  if (Input.GetMouseButtonDown(0))
         //  {
@@ -171,7 +171,7 @@ public class CameraResolution : MonoBehaviour
         //            }
         //        }
         //#endif  
-    }
+    }*/
     //  private void Creat_touch()
     //  {
     //      Vector3 mPosition = ca.ScreenToWorldPoint(Input.mousePosition);
